@@ -1,0 +1,614 @@
+@charset "UTF-8";
+
+/* =======================================================
+   RESET E VARIÁVEIS GERAIS
+   ======================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* --- PALETA DE CORES (CONTRASTE APRIMORADO) --- */
+    --primary-color: #F8F2ED;   /* Mantém o off-white luminoso */
+    --secondary-color: #CABBAD; /* Bege suave */
+    
+    /* Cores de Texto Escurecidas para Leitura */
+    --accent-color: #A1765D;    /* Terracota ligeiramente mais denso */
+    --accent-light: #D4C6C0;    
+    --text-dark: #624C3D;       /* Marrom Café Profundo (Muito mais legível) */
+    --text-medium: #A1765D;     /* Para parágrafos, sólido e forte */
+    --text-light: #ffffff;      
+    --dark-bg: #624C3D;         /* Fundo seção masculina mais escuro */
+    
+    /* --- FONTES --- */
+    --font-heading: 'Allura', cursive; 
+    --font-body: 'Nunito', sans-serif; 
+    
+    /* --- EFEITOS --- */
+    --shadow-soft: 0 10px 30px -10px rgba(98, 76, 61, 0.15);
+    --shadow-hover: 0 20px 40px -10px rgba(98, 76, 61, 0.25);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* =======================================================
+   ESTILOS GERAIS
+   ======================================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--primary-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Deixa a fonte mais nítida */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+/* --- TIPOGRAFIA --- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+    font-weight: 400 !important;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 4.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 3rem; 
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    color: var(--text-dark); /* Cor sólida para título */
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; 
+    height: 3px; /* Um pouco mais grossa */
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    opacity: 0.8;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    color: var(--text-medium); /* Cor sólida, sem transparência */
+    font-weight: 500; /* Aumenta levemente o peso da fonte */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- BOTÕES --- */
+button, .agendar-btn, .agendar-link {
+    cursor: pointer;
+    border: none;
+    padding: 16px 32px; 
+    font-family: var(--font-body);
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* =======================================================
+   HEADER & HERO SECTION
+   ======================================================= */
+.hero {
+    /* Aumentei a opacidade do overlay para 0.6 para o texto branco "saltar" */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagens/suporte/salao.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(255, 252, 249, 0.98); /* Fundo quase sólido para leitura do menu */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-dark); /* Texto escuro forte */
+    font-weight: 700; /* Negrito no menu para legibilidade */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.agendar-btn {
+    background: #25D366;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.agendar-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px; /* Barra mais grossa */
+    background-color: var(--text-dark);
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/* Hero Content */
+.hero-content {
+    text-align: center;
+    padding: 0 2rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-content h1 {
+    color: #ffffff;
+    /* Sombra forte no texto para garantir contraste sobre qualquer imagem */
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    margin-bottom: 0;
+}
+
+.hero-content p.hero-text {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8); /* Sombra reforçada */
+}
+
+/* =======================================================
+   CARDS E DIFERENCIAIS
+   ======================================================= */
+.diferenciais {
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+    margin-top: -50px;
+    border-radius: 30px 30px 0 0;
+    padding-top: 4rem;
+}
+
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.diferencial-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(62, 44, 36, 0.08); /* Borda sutil mas visível */
+    transition: var(--transition-smooth);
+}
+
+.diferencial-card h3 {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: 500 !important; /* Um pouco mais de peso na fonte cursiva */
+}
+
+.diferencial-card p {
+    color: var(--text-medium);
+}
+
+.diferencial-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-color);
+}
+
+/* =======================================================
+   PORTFOLIO
+   ======================================================= */
+.resultados {
+    background-color: var(--secondary-color);
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.foto-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    aspect-ratio: 3/4;
+}
+
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.foto-item:hover img {
+    transform: scale(1.1);
+}
+
+.foto-legenda {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gradiente mais escuro para garantir que o texto branco apareça */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5), transparent);
+    color: #fff;
+    padding: 20px;
+    padding-top: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.foto-item:hover .foto-legenda {
+    transform: translateY(0);
+}
+
+/* =======================================================
+   SERVIÇOS
+   ======================================================= */
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.servico-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    border-left: 6px solid var(--accent-color); /* Borda lateral mais visível */
+}
+
+.servico-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--accent-color); /* Mudado para accent para contraste */
+    border-radius: 0 0 0 100%;
+    opacity: 0.1;
+    transition: 0.4s;
+}
+
+.servico-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.servico-card h3 {
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+    color: var(--text-dark);
+    font-weight: 600 !important; /* Reforça o título */
+}
+
+.servico-card p {
+    color: var(--text-medium);
+}
+
+/* =======================================================
+   SEÇÃO MASCULINA (ALTO CONTRASTE)
+   ======================================================= */
+.masculino {
+    background-color: var(--dark-bg);
+    color: #fff;
+    position: relative;
+}
+
+.masculino h2 {
+    background: none;
+    -webkit-text-fill-color: #fff;
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.masculino-item {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda mais clara */
+    transition: 0.3s;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.masculino-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.masculino-item h3 {
+    color: #EBD3C5; /* Cor creme clara para destacar do fundo escuro */
+    font-size: 1.8rem;
+}
+
+.masculino p {
+    color: #F5F5F5; /* Branco gelo, muito legível */
+    opacity: 1;
+}
+
+/* =======================================================
+   DEPOIMENTOS & BLOG
+   ======================================================= */
+.depoimento-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 20px 20px 20px 0;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #e0e0e0; /* Borda cinza para delimitar */
+}
+
+.depoimento-card::before {
+    font-size: 8rem;
+    top: -30px;
+    left: 20px;
+    color: var(--accent-color);
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.depoimento-card p {
+    position: relative;
+    z-index: 1;
+    color: var(--text-dark);
+    font-style: italic;
+    font-weight: 600; /* Destaque para o texto do depoimento */
+}
+
+.cliente-info .nome {
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+.blog-post {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+}
+
+.blog-post:hover {
+    transform: scale(1.02);
+    border-left-width: 10px;
+}
+
+.blog-post h3 {
+    color: var(--text-dark);
+    font-weight: 600 !important;
+}
+
+/* =======================================================
+   SOBRE
+   ======================================================= */
+.sobre-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.sobre-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.sobre-texto {
+    flex: 2;
+}
+
+/* =======================================================
+   CONTATO E RODAPÉ
+   ======================================================= */
+.contato {
+    background: var(--secondary-color);
+}
+
+.info-item {
+    background: #fff;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.agendar-link {
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(150, 104, 80, 0.4);
+    margin-top: 1rem;
+    font-weight: 800; /* Texto do botão bem forte */
+}
+
+.agendar-link:hover {
+    background: #7a523f; /* Hover mais escuro */
+    transform: translateY(-3px);
+}
+
+.footer {
+    background: #241c17; /* Quase preto */
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-link {
+    color: #E0E0E0; /* Texto do rodapé claro */
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* =======================================================
+   RESPONSIVIDADE
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    
+    .hero {
+        background-attachment: scroll;
+    }
+
+    .diferenciais {
+        margin-top: -30px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        height: calc(100vh - 70px);
+        background: #fff;
+        flex-direction: column;
+        width: 75%;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+        padding-top: 2rem;
+        gap: 1.5rem;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    
+    .agendar-btn { display: none; }
+    .hamburger { display: flex; }
+
+    .diferenciais-grid, 
+    .servicos-grid, 
+    .masculino-servicos, 
+    .galeria,
+    .depoimentos-grid,
+    .blog-posts,
+    .contato-info {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Animações Básicas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
